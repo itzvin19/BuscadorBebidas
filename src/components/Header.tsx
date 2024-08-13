@@ -27,11 +27,13 @@ export const Header = () => {
       })
   }
 
+  const showNotification=useAppStore(state=>state.showNotification)
+
   const handleSubmit=(e:FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
 
     if(Object.values(searchfilters).includes('')){
-      console.log("Todos los campos son obligatorios")
+      showNotification({text:'Todos los campos son obligatorios',error:true})
     }else{
       searchRecipes(searchfilters)
     }
